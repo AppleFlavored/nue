@@ -16,11 +16,13 @@ import net.minestom.server.event.player.PlayerDisconnectEvent
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.event.player.PlayerChatEvent
+import net.minestom.server.event.player.PlayerBlockPlaceEvent
 import net.minestom.server.event.server.ServerListPingEvent
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.instance.block.Block
 import net.minestom.server.ping.ResponseData
 import net.minestom.server.utils.NamespaceID
+import net.minestom.server.utils.Direction
 import net.minestom.server.world.DimensionType
 import net.minestom.server.extras.MojangAuth
 import org.slf4j.Logger
@@ -119,7 +121,7 @@ object Nue {
 
         val server = MinecraftServer.init()
         MojangAuth.init()
-        
+
         setupInstance()
         registerEventListeners()
         registerCommands()
