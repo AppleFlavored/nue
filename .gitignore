@@ -31,3 +31,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+
+### Server generated files ### 
+*.polar
+config.toml 

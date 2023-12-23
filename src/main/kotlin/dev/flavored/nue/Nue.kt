@@ -13,12 +13,14 @@ import net.minestom.server.coordinate.Pos
 import net.minestom.server.event.player.PlayerDisconnectEvent
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
+import net.minestom.server.event.player.PlayerChatEvent
 import net.minestom.server.event.server.ServerListPingEvent
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.instance.block.Block
 import net.minestom.server.ping.ResponseData
 import net.minestom.server.utils.NamespaceID
 import net.minestom.server.world.DimensionType
+import net.minestom.server.extras.MojangAuth
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.net.InetSocketAddress
@@ -65,6 +67,12 @@ object Nue {
     private fun registerEventListeners() {
         val eventHandler = MinecraftServer.getGlobalEventHandler()
 
+        eventHandler.addListener(PlayerChatEvent::class.java) { event -> 
+            event.setChatFormat { _ -> 
+                "<light_purple>${event.player.username}<reset>: ${event.message}".mm()
+            }
+        }
+
         eventHandler.addListener(PlayerLoginEvent::class.java) { event ->
             event.setSpawningInstance(defaultInstance)
 
@@ -105,6 +113,8 @@ object Nue {
         }
 
         val server = MinecraftServer.init()
+        MojangAuth.init()
+        
         setupInstance()
         registerEventListeners()
         registerCommands()
