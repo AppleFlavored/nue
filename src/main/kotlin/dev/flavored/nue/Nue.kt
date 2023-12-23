@@ -5,6 +5,8 @@ import cc.ekblad.toml.tomlMapper
 import dev.flavored.nue.commands.GameModeCommand
 import dev.flavored.nue.commands.TeleportCommand
 import dev.flavored.nue.commands.WhitelistCommand
+import dev.flavored.nue.handlers.BlockPlacementHandlers
+import dev.flavored.nue.handlers.ItemDropHandlers
 import dev.flavored.nue.utils.mm
 import net.hollowcube.polar.PolarLoader
 import net.minestom.server.MinecraftServer
@@ -93,6 +95,9 @@ object Nue {
                 config.server.favicon?.let { favicon = it }
             }
         }
+
+        BlockPlacementHandlers
+        ItemDropHandlers
     }
 
     private fun registerCommands() {
