@@ -2,9 +2,7 @@ package dev.flavored.nue
 
 import cc.ekblad.toml.decode
 import cc.ekblad.toml.tomlMapper
-import dev.flavored.nue.commands.GameModeCommand
-import dev.flavored.nue.commands.TeleportCommand
-import dev.flavored.nue.commands.WhitelistCommand
+import dev.flavored.nue.commands.*
 import dev.flavored.nue.handlers.BlockPlacementHandlers
 import dev.flavored.nue.handlers.ItemDropHandlers
 import dev.flavored.nue.utils.mm
@@ -104,7 +102,9 @@ object Nue {
 
     private fun registerCommands() {
         MinecraftServer.getCommandManager().apply {
+            register(ClearCommand())
             register(GameModeCommand())
+            register(GiveCommand())
             register(TeleportCommand())
             register(WhitelistCommand())
         }
