@@ -15,7 +15,6 @@ class GameModeCommand : Command("gamemode", "gm") {
         .setFormat(ArgumentEnum.Format.LOWER_CASED)
     private val target = ArgumentType.Entity("target")
         .onlyPlayers(true)
-        .singleEntity(true)
 
     init {
         defaultExecutor = CommandExecutor { sender, _ ->
